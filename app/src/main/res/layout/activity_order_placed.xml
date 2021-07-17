@@ -6,7 +6,7 @@
     android:background="@color/colorAccent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="58dp"
@@ -19,7 +19,7 @@
             android:src="@drawable/ic_clear_black_18dp"
             android:onClick="finishActivity"/>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_below="@id/toolbar"

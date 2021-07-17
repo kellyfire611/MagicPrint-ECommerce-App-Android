@@ -3,8 +3,10 @@ package com.beingdev.magicprint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,9 +37,9 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtemail,edtpass;
-    private String email,pass,sessionmobile;
-    private TextView appname,forgotpass,registernow;
+    private EditText edtemail, edtpass;
+    private String email, pass, sessionmobile;
+    private TextView appname, forgotpass, registernow;
     private RequestQueue requestQueue;
     private UserSession session;
     public static final String TAG = "MyTag";
@@ -51,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.e("Login CheckPoint","LoginActivity started");
+        Log.e("Login CheckPoint", "LoginActivity started");
         //check Internet Connection
         new CheckInternetConnection(this).checkConnection();
 
@@ -59,62 +61,61 @@ public class LoginActivity extends AppCompatActivity {
         appname = findViewById(R.id.appname);
         appname.setTypeface(typeface);
 
-        edtemail= findViewById(R.id.email);
-        edtpass= findViewById(R.id.password);
+        edtemail = findViewById(R.id.email);
+        edtpass = findViewById(R.id.password);
 
-        Bundle registerinfo=getIntent().getExtras();
-        if (registerinfo!=null) {
-                edtemail.setText(registerinfo.getString("email"));
+        Bundle registerinfo = getIntent().getExtras();
+        if (registerinfo != null) {
+            edtemail.setText(registerinfo.getString("email"));
         }
 
-        session= new UserSession(getApplicationContext());
+        session = new UserSession(getApplicationContext());
 
         requestQueue = Volley.newRequestQueue(LoginActivity.this);//Creating the RequestQueue
 
         //if user wants to register
-        registernow= findViewById(R.id.register_now);
+        registernow = findViewById(R.id.register_now);
         registernow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,Register.class));
+                startActivity(new Intent(LoginActivity.this, Register.class));
                 finish();
             }
         });
 
         //if user forgets password
-        forgotpass=findViewById(R.id.forgot_pass);
+        forgotpass = findViewById(R.id.forgot_pass);
         forgotpass.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(LoginActivity.this,ForgotPassword.class));
+                startActivity(new Intent(LoginActivity.this, ForgotPassword.class));
             }
         });
 
 
         //Validating login details
-        Button button=findViewById(R.id.login_button);
+        Button button = findViewById(R.id.login_button);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                email=edtemail.getText().toString();
-                pass=edtpass.getText().toString();
+                email = edtemail.getText().toString();
+                pass = edtpass.getText().toString();
 
                 if (validateUsername(email) && validatePassword(pass)) { //Username and Password Validation
 
                     //Progress Bar while connection establishes
 
-                          final KProgressHUD progressDialog=  KProgressHUD.create(LoginActivity.this)
+                    final KProgressHUD progressDialog = KProgressHUD.create(LoginActivity.this)
                             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                             .setLabel("Please wait")
                             .setCancellable(false)
                             .setAnimationSpeed(2)
                             .setDimAmount(0.5f)
                             .show();
-
 
                     LoginRequest loginRequest = new LoginRequest(email, pass, new Response.Listener<String>() {
                         @Override
@@ -129,11 +130,11 @@ public class LoginActivity extends AppCompatActivity {
                                     //Passing all received data from server to next activity
                                     String sessionname = jsonObject.getString("name");
                                     sessionmobile = jsonObject.getString("mobile");
-                                    String sessionemail =  jsonObject.getString("email");
-                                    String sessionphoto =  jsonObject.getString("url");
+                                    String sessionemail = jsonObject.getString("email");
+                                    String sessionphoto = jsonObject.getString("url");
 
                                     //create shared preference and store data
-                                    session.createLoginSession(sessionname,sessionemail,sessionmobile,sessionphoto);
+                                    session.createLoginSession(sessionname, sessionemail, sessionmobile, sessionphoto);
 
                                     //count value of firebase cart and wishlist
                                     countFirebaseValues();
@@ -142,9 +143,9 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(loginSuccess);
                                     finish();
                                 } else {
-                                    if(jsonObject.getString("status").equals("INVALID"))
+                                    if (jsonObject.getString("status").equals("INVALID"))
                                         Toast.makeText(LoginActivity.this, "User Not Found", Toast.LENGTH_SHORT).show();
-                                    else{
+                                    else {
                                         Toast.makeText(LoginActivity.this, "Passwords Don't Match", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -180,8 +181,8 @@ public class LoginActivity extends AppCompatActivity {
         mDatabaseReference.child("cart").child(sessionmobile).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.e(dataSnapshot.getKey(),dataSnapshot.getChildrenCount() + "");
-                    session.setCartValue((int)dataSnapshot.getChildrenCount());
+                Log.e(dataSnapshot.getKey(), dataSnapshot.getChildrenCount() + "");
+                session.setCartValue((int) dataSnapshot.getChildrenCount());
             }
 
             @Override
@@ -193,8 +194,8 @@ public class LoginActivity extends AppCompatActivity {
         mDatabaseReference.child("wishlist").child(sessionmobile).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e(dataSnapshot.getKey(),dataSnapshot.getChildrenCount() + "");
-                session.setWishlistValue((int)dataSnapshot.getChildrenCount());
+                Log.e(dataSnapshot.getKey(), dataSnapshot.getChildrenCount() + "");
+                session.setWishlistValue((int) dataSnapshot.getChildrenCount());
             }
 
             @Override
@@ -233,16 +234,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("Login CheckPoint","LoginActivity resumed");
+        Log.e("Login CheckPoint", "LoginActivity resumed");
         //check Internet Connection
         new CheckInternetConnection(this).checkConnection();
 
-        }
+    }
 
     @Override
-    protected void onStop () {
+    protected void onStop() {
         super.onStop();
-        Log.e("Login CheckPoint","LoginActivity stopped");
+        Log.e("Login CheckPoint", "LoginActivity stopped");
     }
 
     @Override

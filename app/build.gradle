@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
     buildToolsVersion "27.0.1"
     defaultConfig {
         applicationId "com.beingdev.magicprint"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 30
         versionCode 1
         versionName "1.1"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         useLibrary 'org.apache.http.legacy'
         manifestPlaceholders = [onesignal_app_id               : "5c3d7b9b-1874-463f-8081-1c3439ccb3ea",
                                 onesignal_google_project_number: "REMOTE"]
@@ -47,20 +47,20 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services:11.0.1'
 
-    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:27.+'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
 
-    implementation 'com.android.support:customtabs:27.+'
+    implementation 'androidx.browser:browser:1.0.0'
 
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation 'com.daimajia.easing:library:2.0@aar'
 
@@ -70,21 +70,21 @@ dependencies {
 
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
 
-    implementation('com.mikepenz:aboutlibraries:6.0.1@aar') {
+    implementation('com.mikepenz:aboutlibraries:6.1.1@aar') {
         transitive = true
     }
-    implementation("com.mikepenz:materialdrawer:6.0.2@aar") {
+    implementation("com.mikepenz:materialdrawer:6.1.2@aar") {
         transitive = true
     }
     implementation 'com.squareup.picasso:picasso:2.3.2'
 
     implementation 'com.daimajia.slider:library:1.1.5@aar'
 
-    implementation "com.android.support:recyclerview-v7:27.+"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    implementation 'com.android.support:cardview-v7:27.+'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
-    implementation "com.android.support:support-annotations:27.+"
+    implementation 'androidx.annotation:annotation:1.0.0'
 
     implementation 'com.webianks.library:easy-feedback:1.0.2'
 
@@ -106,8 +106,8 @@ dependencies {
     implementation 'com.github.yesidlazaro:GmailBackground:1.2.0'
 
     //Field and method binding for Android views which uses annotation processing
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 
     implementation 'com.airbnb.android:lottie:2.2.5'
