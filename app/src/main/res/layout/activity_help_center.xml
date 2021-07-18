@@ -7,7 +7,7 @@
     android:background="@color/colorAccent"
     tools:context="com.beingdev.magicprint.HelpCenter">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbarwrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,7 +19,7 @@
         android:background="@color/colorAccent"
         android:minHeight="?attr/actionBarSize"/>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_below="@id/toolbarwrap"

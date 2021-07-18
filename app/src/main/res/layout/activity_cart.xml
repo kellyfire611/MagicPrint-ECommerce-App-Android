@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbarwrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -56,7 +56,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_below="@id/toolbarwrap"
@@ -74,7 +74,7 @@
             android:layout_height="0dp"
             android:layout_weight="9.5">
 
-            <androidx.appcompat.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:scrollbars="vertical"
                 android:layout_height="match_parent"

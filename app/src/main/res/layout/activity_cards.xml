@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbarwrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -53,7 +53,7 @@
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/tv_no_cards"
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:scrollbars="vertical"
             android:layout_height="match_parent"
